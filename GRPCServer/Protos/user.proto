@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+option csharp_namespace = "GRPCExperiment";
+
+import "google/protobuf/empty.proto";
+package Users;
+
+service Users {
+	rpc GetUser (UserRequest) returns (UserResponse);
+	rpc GetUsers (google.protobuf.Empty) returns (UsersResponse);
+}
+
+message User {
+	string id = 1;
+	string name = 2;
+}
+
+message UserRequest {
+	string id = 1;
+}
+
+message UserResponse {
+	User user = 1;
+}
+
+message UsersResponse {
+	repeated User users = 1;
+}
