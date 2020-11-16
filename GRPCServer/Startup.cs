@@ -1,13 +1,11 @@
 ﻿using GRPCExperiment.Services;
+using GRPCServer.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace GRPCExperiment
 {
@@ -17,6 +15,7 @@ namespace GRPCExperiment
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<UsersContext>(options => options.UseSqlite("Data Source=users.db"));
             services.AddGrpc();
         }
 
